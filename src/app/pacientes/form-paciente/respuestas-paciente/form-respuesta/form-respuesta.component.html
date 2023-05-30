@@ -1,0 +1,38 @@
+<div class="card m-4">
+    <div class="card-header text-center">
+        <h5>Respuesta</h5>
+        <button class="btn btn-primary" [routerLink]="['/paciente/form/',idPaciente]"><i
+                class="fa-solid fa-arrow-left"></i></button>
+    </div>
+    <form #form="ngForm" class="card-body m-2">
+        <div class="row g-3 form-group">
+            <div class="col-md-5">
+                <label for="inputPregunta" class="form-label">Pregunta</label>
+                <select class="form-select" name="select" [(ngModel)]="preguntaSelectId" (change)="capturarPregunta()">
+                    <option [value]="pregunta.id"  *ngFor="let pregunta of preguntas">{{pregunta.pregunta}}</option>
+                </select>
+            </div>
+            <div class="col-md-5">
+                <label for="inputRespuesta" class="form-label">Respuesta</label>
+                <input type="text" class="form-control" name="inputRespuesta" id="inputRespuesta" maxlength="255"
+                    [(ngModel)]="respuesta.respuesta" required #res="ngModel">
+                <div class="alert alert-danger" *ngIf="res.invalid && res.touched">
+                    <div *ngIf="res.errors.required">
+                        Respuesta es un campo obligatorio
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <label for="inputFechaRegistro" class="form-label">Fecha Registro</label>
+                <input type="date" disabled="true" class="form-control" name="inputFechaRegistro"
+                    id="inputFechaRegistro" [ngModel]="respuesta.fechaRegistro | date:'yyyy-MM-dd'">
+            </div>
+        </div>
+        <div class="row form-group mt-3">
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-success" (click)="guardar()"
+                    [disabled]="!form.form.valid">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>

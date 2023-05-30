@@ -1,0 +1,31 @@
+<div class="card m-4" *ngIf="pacienteId">
+    <div class="card-body">
+        <h5 class="card-title text-center">Seguimientos</h5>
+        <table class="text-center table table-primary table-responsive table-striped table-hover caption-top">
+            <caption><a [routerLink]="['/paciente/form/' + this.pacienteId + '/seguimiento/']" class="btn btn-success btn-sm">Nuevo Seguimiento</a></caption>
+            <thead>
+                <tr>
+                    <th>Editar</th>
+                    <th>Fecha</th>
+                    <th>Altura</th>
+                    <th>Peso</th>
+                    <th>Masa Grasa</th>
+                    <th>Masa Magra</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let seguimiento of seguimientos">
+                    <td><button class="btn btn-primary" [routerLink]="['/paciente/form/' + seguimiento.pacienteId + '/seguimiento/' + seguimiento.id]"><i class="fa-solid fa-user-pen"></i></button></td>
+                    <td>{{seguimiento.fechaRegistro | date:'yyyy-MM-dd'}}</td>
+                    <td>{{seguimiento.altura}}</td>
+                    <td>{{seguimiento.peso}}</td>
+                    <td>{{seguimiento.masaGrasa}}</td>
+                    <td>{{seguimiento.masaMagra}}</td>
+                    <td><button class="btn btn-danger" (click)="borrarSeguimiento(seguimiento.id)"><i class="fa-solid fa-trash"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+        <app-paginador *ngIf="paginador" [paginador]="paginador" (numeroPagina)="obtenerPagina($event)"></app-paginador>
+    </div>
+</div>

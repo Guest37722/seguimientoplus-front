@@ -1,0 +1,68 @@
+<div class="card m-4">
+    <div class="card-header text-center">
+        <h5>Ficha Paciente</h5>
+        <button class="btn btn-primary" [routerLink]="['/pacientes']"><i class="fa-solid fa-arrow-left">Volver</i></button>
+    </div>
+    <form #form="ngForm" class="card-body m-2">
+        <div class="row g-3 form-group">
+            <div class="col-md-4">
+                <label for="inputNombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="inputNombre" id="inputNombre" [(ngModel)]="paciente.nombre" required #nombre="ngModel" maxlength="255">
+                <div class="alert alert-danger" *ngIf="nombre.invalid && nombre.touched">
+                    <div *ngIf="nombre.errors.required">
+                        Nombre es un campo obligatorio
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <label for="inputApellidos" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" name="inputApellidos" id="inputApellidos" [(ngModel)]="paciente.apellidos" required #apellidos="ngModel" maxlength="255">
+                <div class="alert alert-danger" *ngIf="apellidos.invalid && apellidos.touched">
+                    <div *ngIf="apellidos.errors.required">
+                        Apellidos es un campo obligatorio
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label for="inputDireccion" class="form-label">Direccion</label>
+                <input type="text" class="form-control" name="inputDireccion" id="inputDireccion" [(ngModel)]="paciente.direccion" required #direccion="ngModel" maxlength="255">
+                <div class="alert alert-danger" *ngIf="direccion.invalid && direccion.touched">
+                    <div *ngIf="direccion.errors.required">
+                        Direccion es un campo obligatorio
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="inputEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" name="inputEmail" id="inputEmail" [(ngModel)]="paciente.email" required email #email="ngModel" maxlength="255">
+                <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+                    <div *ngIf="email.errors.required">
+                        Email es un campo obligatorio
+                    </div>
+                    <div *ngIf="email.errors.email">
+                        Se requiere un email válido
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="inputTelefono" class="form-label">Telefono</label>
+                <input type="text" class="form-control" name="inputTelefono" id="inputTelefono" [(ngModel)]="paciente.telefono" required #telefono="ngModel" maxlength="15">
+                <div class="alert alert-danger" *ngIf="telefono.invalid && telefono.touched">
+                    <div *ngIf="telefono.errors.required">
+                        Telefono es un campo obligatorio
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <label for="inputFechaRegistro" class="form-label">Fecha Registro</label>
+                <input type="date" disabled="true" class="form-control" name="inputFechaRegistro" id="inputFechaRegistro"
+                    [ngModel]="paciente.fechaRegistro | date:'yyyy-MM-dd'">
+            </div>
+        </div>
+        <div class="row form-group mt-3">
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-success" (click)="guardar()" [disabled]="!form.form.valid">Guardar Ficha</button>
+            </div>
+        </div>
+    </form>
+</div>

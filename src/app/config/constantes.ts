@@ -1,0 +1,1 @@
+export const URL_SRV = 'http://localhost:8080'

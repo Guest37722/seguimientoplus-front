@@ -1,0 +1,27 @@
+<div class="card m-4" *ngIf="pacienteId">
+    <div class="card-body">
+        <h5 class="card-title text-center">Cuestionario</h5>
+        <table class="text-center table table-primary table-responsive table-striped table-hover caption-top">
+            <caption><a [routerLink]="['/paciente/form/' + this.pacienteId + '/respuesta/']" class="btn btn-success btn-sm">Nueva Respuesta</a></caption>
+            <thead>
+                <tr>
+                    <th>Editar</th>
+                    <th>Fecha</th>
+                    <th>Pregunta</th>
+                    <th>Respuesta</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let respuesta of respuestas">
+                    <td><button class="btn btn-primary" [routerLink]="['/paciente/form/' + respuesta.pacienteId + '/respuesta/' + respuesta.id]"><i class="fa-solid fa-user-pen"></i></button></td>
+                    <td>{{respuesta.fechaRegistro | date:'yyyy-MM-dd'}}</td>
+                    <td>{{respuesta.pregunta.pregunta}}</td>
+                    <td>{{respuesta.respuesta}}</td>
+                    <td><button class="btn btn-danger" (click)="borrarRespuesta(respuesta.id)"><i class="fa-solid fa-trash"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+        <app-paginador *ngIf="paginador" [paginador]="paginador" (numeroPagina)="obtenerPagina($event)"></app-paginador>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="card m-4">
+    <div class="card-header">
+        <h5 class="card-title text-center">Listado de Pacientes</h5>
+    </div>
+    <div class="card-body">
+        <table class="text-center table table-responsive-sm table-primary table-hover caption-top">
+            <caption><a routerLink="/paciente/form" class="btn btn-success btn-sm">Nuevo Usuario</a></caption>
+            <thead>
+                <tr>
+                    <th>Editar</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Telefono</th>
+                    <th>Direccion</th>
+                    <th>Email</th>
+                    <th>Fecha Registro</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let paciente of pacientes">
+                    <td><button class="btn btn-primary" [routerLink]="['/paciente/form/',paciente.id]"><i class="fa-solid fa-user-pen"></i></button></td>
+                    <td>{{paciente.nombre}}</td>
+                    <td>{{paciente.apellidos}}</td>
+                    <td>{{paciente.telefono}}</td>
+                    <td>{{paciente.direccion}}</td>
+                    <td>{{paciente.email}}</td>
+                    <td>{{paciente.fechaRegistro | date:'yyyy-MM-dd'}}</td>
+                    <td><button class="btn btn-danger" (click)="borrarPaciente(paciente.id)"><i class="fa-solid fa-trash"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+        <app-paginador *ngIf="paginador" [paginador]="paginador" (numeroPagina)="obtenerPagina($event)"></app-paginador>
+
+    </div>
+</div>

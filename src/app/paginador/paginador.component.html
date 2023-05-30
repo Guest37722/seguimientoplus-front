@@ -1,0 +1,35 @@
+<div class="form-group row">
+    <div class="col-sm-10 text-center">
+    <ul *ngIf="paginas?.length >0" class="pagination">
+    
+      <li class="page-item" *ngIf="paginador.number > 0" style="cursor:pointer">
+        <a class="page-link" (click)="emitirPagina( paginador.number-1)">&laquo;</a>
+        <!-- Anterior -->
+      </li>
+    
+      <li [ngClass]="paginador.first? 'disabled page-item': 'page-item'" style="cursor:pointer">
+        <a class="page-link" (click)="emitirPagina(0)">Primera</a>
+        <!-- Primera -->
+      </li>
+    
+      <li *ngFor="let pagina of paginas" [ngClass]="pagina-1 == paginador.number? 'page-item active':'page-item'" style="cursor:pointer">
+        <span class="page-link" *ngIf="pagina-1 == paginador.number">{{pagina}}</span>
+        <a *ngIf="pagina-1 != paginador.number" class="page-link" (click)="emitirPagina(pagina-1)">{{pagina}}</a>
+      </li>
+    
+      <li [ngClass]="paginador.last?' disabled page-item': 'page-item'" style="cursor:pointer">
+        <a class="page-link" (click)="emitirPagina(paginador.totalPages-1)">Última</a>
+        <!-- Ultima -->
+      </li>
+    
+      <li class="page-item" *ngIf="paginador.number < paginador.totalPages-1" style="cursor:pointer">
+        <a class="page-link"  (click)="emitirPagina(paginador.number+1)">&raquo;</a>
+        <!-- Siguiente -->
+      </li>
+    </ul>
+    </div>
+    <div class="col-sm-2 text-center">
+    Total Elementos: {{total}}
+    </div>
+    </div>
+    

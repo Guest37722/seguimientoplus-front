@@ -1,0 +1,56 @@
+<div class="card m-4">
+    <div class="card-header text-center">
+        <h5>Ficha Seguimiento</h5>
+        <button class="btn btn-primary" [routerLink]="['/paciente/form/',idPaciente]"><i class="fa-solid fa-arrow-left"></i></button>
+    </div>
+    <form #form="ngForm" class="card-body m-2">
+        <div class="row g-3 form-group">
+            <div class="col-md-5">
+                <label for="inputAltura" class="form-label">Altura (cm)</label>
+                <input type="number" class="form-control" name="inputAltura" id="inputAltura" value="0" step="1" min="0" [(ngModel)]="seguimiento.altura" required #altura="ngModel">
+                <div class="alert alert-danger" *ngIf="altura.invalid && altura.touched">
+                    <div *ngIf="altura.errors.required">
+                        Altura es un campo obligatorio
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <label for="inputPeso" class="form-label">Peso (kg)</label>
+                <input type="number" class="form-control" name="inputPeso" id="inputPeso" value="0" step="0.01" min="0" [(ngModel)]="seguimiento.peso" required #peso="ngModel">
+                <div class="alert alert-danger" *ngIf="peso.invalid && peso.touched">
+                    <div *ngIf="peso.errors.required">
+                        Peso es un campo obligatorio
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <label for="inputMasaGrasa" class="form-label">Masa Grasa (kg)</label>
+                <input type="number" class="form-control" name="inputMasaGrasa" id="inputMasaGrasa" value="0" step="0.01" min="0" [(ngModel)]="seguimiento.masaGrasa" required #masaGrasa="ngModel">
+                <div class="alert alert-danger" *ngIf="masaGrasa.invalid && masaGrasa.touched">
+                    <div *ngIf="masaGrasa.errors.required">
+                        Masa Grasa es un campo obligatorio
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <label for="inputMasaMagra" class="form-label">Masa Magra (kg)</label>
+                <input type="number" class="form-control" name="inputMasaMagra" id="inputMasaMagra" value="0" step="0.01" min="0" [(ngModel)]="seguimiento.masaMagra" required #masaMagra="ngModel">
+                <div class="alert alert-danger" *ngIf="masaMagra.invalid && masaMagra.touched">
+                    <div *ngIf="masaMagra.errors.required">
+                        Masa Magra es un campo obligatorio
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <label for="inputFechaRegistro" class="form-label">Fecha Registro</label>
+                <input type="date" disabled="true" class="form-control" name="inputFechaRegistro" id="inputFechaRegistro"
+                    [ngModel]="seguimiento.fechaRegistro | date:'yyyy-MM-dd'">
+            </div>
+        </div>
+        <div class="row form-group mt-3">
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-success" (click)="guardar()" [disabled]="!form.form.valid">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>

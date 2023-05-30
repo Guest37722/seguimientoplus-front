@@ -1,0 +1,23 @@
+<div class="card m-4">
+    <div class="card-body">
+        <h5 class="card-title text-center">Listado de Preguntas</h5>
+        <table class="text-center table table-primary table-responsive table-striped table-hover caption-top">
+            <caption><a routerLink="/pregunta/form" class="btn btn-success btn-sm">Nueva Pregunta</a></caption>
+            <thead>
+                <tr>
+                    <th>Editar</th>
+                    <th>Pregunta</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pregunta of preguntas">
+                    <td><button class="btn btn-primary" [routerLink]="['/pregunta/form/',pregunta.id]"><i class="fa-solid fa-user-pen"></i></button></td>
+                    <td>{{pregunta.pregunta}}</td>
+                    <td><button class="btn btn-danger" (click)="borrarPregunta(pregunta.id)"><i class="fa-solid fa-trash"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+        <app-paginador *ngIf="paginador" [paginador]="paginador" (numeroPagina)="obtenerPagina($event)"></app-paginador>
+    </div>
+</div>

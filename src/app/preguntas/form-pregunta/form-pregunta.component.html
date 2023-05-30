@@ -1,0 +1,29 @@
+<div class="card m-4">
+    <div class="card-header text-center">
+        <h5>Ficha Pregunta</h5>
+        <button class="btn btn-primary" [routerLink]="['/preguntas']"><i class="fa-solid fa-arrow-left">Volver</i></button>
+    </div>
+    <form #form="ngForm" class="card-body m-2">
+        <div class="row g-3 form-group">
+            <div class="col-md-10">
+                <label for="inputPregunta" class="form-label">Pregunta</label>
+                <input type="text" class="form-control" name="inputPregunta" id="inputPregunta" [(ngModel)]="pregunta.pregunta" required #preguntaf="ngModel" maxlength="255">
+                <div class="alert alert-danger" *ngIf="preguntaf.invalid && preguntaf.touched">
+                    <div *ngIf="preguntaf.errors.required">
+                        Pregunta es un campo obligatorio
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <label for="inputFechaRegistro" class="form-label">Fecha Registro</label>
+                <input type="date" disabled="true" class="form-control" name="inputFechaRegistro" id="inputFechaRegistro"
+                    [ngModel]="pregunta.fechaRegistro | date:'yyyy-MM-dd'">
+            </div>
+        </div>
+        <div class="row form-group mt-3">
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-success" (click)="guardar()" [disabled]="!form.form.valid">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
